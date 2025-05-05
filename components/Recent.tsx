@@ -237,7 +237,7 @@ const PackageModal = ({ pkg, open, onClose }: { pkg: typeof travelPackages[0]; o
                       >
                         <meta itemProp="name" content={`${pkg.title} Tour`} />
                         <Image
-                          src={video.thumbnail}
+                          src={video.thumbnail || '/images/default-thumbnail.jpg'}
                           alt={`Video: ${pkg.title}`}
                           fill
                           className="object-contain"
