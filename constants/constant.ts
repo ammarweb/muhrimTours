@@ -9,7 +9,7 @@ export interface NavLink {
 export const navlinks: NavLink[] = [
   { 
     id: 1,
-    url: '#home',  // Now includes both path and anchor
+    url: '#home',  
     label: 'Home',
   },
   { 
