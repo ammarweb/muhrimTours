@@ -9,22 +9,22 @@ export interface NavLink {
 export const navlinks: NavLink[] = [
   { 
     id: 1,
-    url: '/#home',  // Now includes both path and anchor
+    url: '#home',  // Now includes both path and anchor
     label: 'Home',
   },
   { 
     id: 2,
-    url: '/#packages',
+    url: '#packages',
     label: 'Packages',
   }, 
   { 
     id: 3,
-    url: '/about',
+    url: '#about',
     label: 'About',
   }, 
   { 
     id: 4,
-    url: '/#contact',
+    url: '#contact',
     label: 'Contact',
   },
 ];
