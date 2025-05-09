@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, type CarouselApi } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
@@ -17,14 +17,11 @@ const travelPackages = [
     media: [
       { type: "tiktok", url: "https://vm.tiktok.com/ZMBKds6yf/", thumbnail: "/images/thumb1.jpg", duration: "1:30" },
       { type: "tiktok", url: "https://vm.tiktok.com/ZMBKd4Txu/", thumbnail: "/images/thumb2.jpg", duration: "1:30" },
-
       { type: "image", url: "/images/gal1.jpg", alt: "photo" },
       { type: "image", url: "/images/gal2.jpg", alt: "photo" },
       { type: "image", url: "/images/gal3.jpg", alt: "photo" },
       { type: "image", url: "/images/gal4.jpg", alt: "photo" },
       { type: "image", url: "/images/gal5.jpg", alt: "photo" }
-
-      
     ]
   },
   {
@@ -37,7 +34,6 @@ const travelPackages = [
     media: [
       { type: "tiktok", url: "https://vm.tiktok.com/ZMBKduxNm/", thumbnail: "/images/thumb2.jpg", duration: "1:15" },
       { type: "tiktok", url: "https://vm.tiktok.com/ZMBKR1sVa/", thumbnail: "/images/thumb1.jpg", duration: "1:15" },
-
       { type: "image", url: "/images/c1.jpg", alt: "photo" },
       { type: "image", url: "/images/c2.jpg", alt: "photo" },
       { type: "image", url: "/images/c3.jpg", alt: "photo" },
@@ -47,11 +43,8 @@ const travelPackages = [
       { type: "image", url: "/images/c7.jpg", alt: "photo" },
       { type: "image", url: "/images/c8.jpg", alt: "photo" },
       { type: "image", url: "/images/c9.jpg", alt: "photo" }
-
-
     ]
   },
-
   {
     id: 3,
     title: "Coupls Umrah Package",
@@ -62,7 +55,6 @@ const travelPackages = [
     media: [
       { type: "tiktok", url: "https://vm.tiktok.com/ZMBKduxNm/", thumbnail: "/images/thumb2.jpg", duration: "1:15" },
       { type: "tiktok", url: "https://vm.tiktok.com/ZMBKR1sVa/", thumbnail: "/images/thumb1.jpg", duration: "1:15" },
-
       { type: "image", url: "/images/c1.jpg", alt: "photo" },
       { type: "image", url: "/images/c2.jpg", alt: "photo" },
       { type: "image", url: "/images/c3.jpg", alt: "photo" },
@@ -72,9 +64,6 @@ const travelPackages = [
       { type: "image", url: "/images/c7.jpg", alt: "photo" },
       { type: "image", url: "/images/c8.jpg", alt: "photo" },
       { type: "image", url: "/images/c9.jpg", alt: "photo" }
-
-
-    
     ]
   },
   {
@@ -87,7 +76,6 @@ const travelPackages = [
     media: [
       { type: "tiktok", url: "https://vm.tiktok.com/ZMBKduxNm/", thumbnail: "/images/thumb2.jpg", duration: "1:15" },
       { type: "tiktok", url: "https://vm.tiktok.com/ZMBKR1sVa/", thumbnail: "/images/thumb1.jpg", duration: "1:15" },
-
       { type: "image", url: "/images/c1.jpg", alt: "photo" },
       { type: "image", url: "/images/c2.jpg", alt: "photo" },
       { type: "image", url: "/images/c3.jpg", alt: "photo" },
@@ -109,13 +97,11 @@ const travelPackages = [
     media: [
       { type: "tiktok", url: "https://vm.tiktok.com/ZMBKds6yf/", thumbnail: "/images/thumb1.jpg", duration: "1:30" },
       { type: "tiktok", url: "https://vm.tiktok.com/ZMBKd4Txu/", thumbnail: "/images/thumb2.jpg", duration: "1:30" },
-
       { type: "image", url: "/images/gal1.jpg", alt: "photo" },
       { type: "image", url: "/images/gal2.jpg", alt: "photo" },
       { type: "image", url: "/images/gal3.jpg", alt: "photo" },
       { type: "image", url: "/images/gal4.jpg", alt: "photo" },
       { type: "image", url: "/images/gal5.jpg", alt: "photo" }
-
     ]
   },
   {
@@ -128,8 +114,6 @@ const travelPackages = [
     media: [
       { type: "tiktok", url: "https://vm.tiktok.com/ZMBKduxNm/", thumbnail: "/images/thumb2.jpg", duration: "1:15" },
       { type: "tiktok", url: "https://vm.tiktok.com/ZMBKR1sVa/", thumbnail: "/images/thumb1.jpg", duration: "1:15" },
-
-
       { type: "image", url: "/images/c1.jpg", alt: "photo" },
       { type: "image", url: "/images/c2.jpg", alt: "photo" },
       { type: "image", url: "/images/c3.jpg", alt: "photo" },
@@ -139,7 +123,6 @@ const travelPackages = [
       { type: "image", url: "/images/c7.jpg", alt: "photo" },
       { type: "image", url: "/images/c8.jpg", alt: "photo" },
       { type: "image", url: "/images/c9.jpg", alt: "photo" }
-
     ]
   }
 ];
@@ -354,6 +337,7 @@ const Recent = () => {
   const { api, setApi, current, count } = useCarousel();
   const [isMobile, setIsMobile] = useState(false);
 
+  // Auto-scroll functionality
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -363,8 +347,23 @@ const Recent = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Auto-scroll functionality
+  useEffect(() => {
+    if (!isMobile || !api) return;
+
+    const interval = setInterval(() => {
+      if (current === count - 1) {
+        api.scrollTo(0); // Go back to first item
+      } else {
+        api.scrollNext(); // Go to next item
+      }
+    }, 3000); // 4 seconds interval
+
+    return () => clearInterval(interval);
+  }, [isMobile, api, current, count]);
+
   return (
-    <section id="recent-section" className="bg-black min-h-screen w-full py-12 px-4 sm:px-6 lg:px-8">
+    <section id="packages" className="bg-black min-h-screen w-full py-12 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-yellow-400 to-[#FFD700]">

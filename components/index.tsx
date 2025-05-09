@@ -23,7 +23,7 @@ const Hero = () => {
   const scaleInClass = isMounted ? "scale-100" : "scale-0";
 
   return (
-    <div className="relative min-h-screen overflow-hidden font-serif">
+    <div  id='home' className="relative min-h-screen overflow-hidden font-serif">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -117,7 +117,7 @@ const Hero = () => {
             <Button 
               className="bg-gradient-to-r from-amber-600 to-yellow-500 hover:from-amber-700 hover:to-yellow-600 text-black px-8 py-6 rounded-md shadow-lg transition-colors duration-300 text-xl font-bold"
               onClick={() => {
-                const recentSection = document.getElementById('recent-section');
+                const recentSection = document.getElementById('packages');
                 if (recentSection) {
                   recentSection.scrollIntoView({ behavior: 'smooth' });
                 }

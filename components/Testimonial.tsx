@@ -113,6 +113,21 @@ export default function Testimonials() {
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" });
   const { api, setApi, current, count } = useCarousel();
 
+  // Auto-scroll every 3 seconds
+  useEffect(() => {
+    if (!api) return;
+
+    const interval = setInterval(() => {
+      if (current === count - 1) {
+        api.scrollTo(0);
+      } else {
+        api.scrollNext();
+      }
+    }, 3000); // 3 seconds interval
+
+    return () => clearInterval(interval);
+  }, [api, current, count]);
+
   return (
     <section id="testimonials" className="bg-black py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden border-t border-[#FFD700]/10">
       {/* Gold decorative elements */}
