@@ -357,7 +357,7 @@ const Recent = () => {
       } else {
         api.scrollNext(); // Go to next item
       }
-    }, 3000); // 4 seconds interval
+    }, 5000); // 4 seconds interval
 
     return () => clearInterval(interval);
   }, [isMobile, api, current, count]);
