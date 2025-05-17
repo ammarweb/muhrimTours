@@ -123,7 +123,7 @@ export default function Testimonials() {
       } else {
         api.scrollNext();
       }
-    }, 3000); // 3 seconds interval
+    }, 5000); // 3 seconds interval
 
     return () => clearInterval(interval);
   }, [api, current, count]);

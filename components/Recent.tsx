@@ -289,7 +289,8 @@ const PackageCard = ({ pkg, onClick }: { pkg: typeof travelPackages[0]; onClick:
         src={pkg.image}
         alt={pkg.title}
         fill
-        className="object-conver border-b border-[#FFD700]/30"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        className="object-conatin"
       />
     </div>
     <CardContent className="p-5 flex flex-col flex-grow relative">

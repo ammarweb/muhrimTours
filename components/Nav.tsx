@@ -43,9 +43,10 @@ const Nav: React.FC = () => {
           <Image
             src="/images/logo.png"
             alt="The Muhrim Tours Logo"
-            className="h-10 w-auto md:h-12"
             width={120}
             height={48}
+            className="h-10 w-auto md:h-12"
+            style={{ width: 'auto' }}
             priority
           />
         </Link>
@@ -61,7 +62,7 @@ const Nav: React.FC = () => {
               >
                 {link.label}
                 {link.subLinks && (
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 )}
@@ -99,11 +100,11 @@ const Nav: React.FC = () => {
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           ) : (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 24 24">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           )}

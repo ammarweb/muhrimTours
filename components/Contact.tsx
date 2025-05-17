@@ -52,7 +52,6 @@ export default function ContactSection() {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/arabic-pattern.svg')] opacity-5"></div>
         {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
@@ -221,18 +220,18 @@ export default function ContactSection() {
           </form>
         </motion.div>
 
-        {/* Floating WhatsApp Button */}
+        {/* Floating Teleagarm Button */}
         <motion.a
-  href="https://t.me/themuhrimtours"
-  target="_blank"
-  rel="noopener noreferrer"
-  animate={{ y: [0, -8, 0], rotate: [0, 5, -5, 0] }}
-  transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop', ease: 'easeInOut' }}
-  className="fixed bottom-8 right-8 bg-[#0088cc] text-white p-4 rounded-full shadow-lg z-50 flex items-center justify-center"
->
-  <FaTelegram className="w-8 h-8" />
-  <span className="sr-only">Telegram</span>
-</motion.a>
+          href="https://t.me/themuhrimtours"
+          target="_blank"
+          rel="noopener noreferrer"
+          animate={{ y: [0, -8, 0], rotate: [0, 5, -5, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop', ease: 'easeInOut' }}
+          className="fixed bottom-8 right-8 bg-[#0088cc] text-white p-4 rounded-full shadow-lg z-50 flex items-center justify-center"
+        >
+          <FaTelegram className="w-8 h-8" />
+          <span className="sr-only">Telegram</span>
+        </motion.a>
 
       </div>
     </section>
